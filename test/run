@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 # See README.md for info on running these tests.
 
+testYarnSemver() {
+  compile "yarn-semver"
+  assertCaptured "Resolving yarn version ~0.17"
+  assertCaptured "installing yarn (0.17."
+  assertCapturedSuccess
+}
+
 testYarnRun() {
   compile "yarn-run"
   assertCaptured "Running heroku-postbuild (yarn)"
@@ -16,7 +23,7 @@ testYarnEngine() {
 
 testYarn() {
   compile "yarn"
-  assertCaptured "installing yarn (latest)"
+  assertCaptured "installing yarn"
   assertCaptured "Installing node modules (yarn)"
   assertNotCaptured "Installing node modules (package.json"
   assertCapturedSuccess
