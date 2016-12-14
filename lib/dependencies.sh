@@ -27,7 +27,7 @@ run_if_present() {
 
 yarn_node_modules() {
   local build_dir=${1:-}
-  local yarn_lock=$(mktemp -t yarn.lock)
+  local yarn_lock=$(mktemp -t yarn.lock.XXXXX)
 
   echo "Installing node modules (yarn)"
   cd "$build_dir"
