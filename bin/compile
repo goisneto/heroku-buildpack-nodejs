@@ -23,7 +23,7 @@ mkdir -p "$BUILD_DIR/.heroku/node/"
 cd $BUILD_DIR
 export PATH="$BUILD_DIR/.heroku/node/bin:$BUILD_DIR/.heroku/yarn/bin":$PATH
 
-LOG_FILE='/tmp/node-build-log.txt'
+LOG_FILE=$(mktemp -t node-build-log)
 echo "" > "$LOG_FILE"
 
 ### Load dependencies

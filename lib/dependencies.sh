@@ -27,10 +27,13 @@ run_if_present() {
 
 yarn_node_modules() {
   local build_dir=${1:-}
+  local yarn_lock=$(mktemp -t yarn.lock)
 
   echo "Installing node modules (yarn)"
   cd "$build_dir"
-  yarn install --pure-lockfile 2>&1
+  cp yarn.lock "$yarn_lock"   # https://github.com/heroku/heroku-buildpack-nodejs/pull/348#issuecomment-266888429
+  yarn install 2>&1
+  cp "$yarn_lock" yarn.lock
 }
 
 npm_node_modules() {
